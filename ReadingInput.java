@@ -7,6 +7,7 @@ public class ReadingInput {
         String name = scanner.nextLine();
 
         int age = scanner.nextInt();
-        System.out.println(("age:" + age));
+        System.out.println(("age:" + age + " name: " + name));
+        scanner.close(); // close the scanner to prevent resource leaks
     }
 }
