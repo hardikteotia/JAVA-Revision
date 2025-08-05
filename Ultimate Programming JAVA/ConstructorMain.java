@@ -18,5 +18,7 @@ public class ConstructorMain {
 
         int wage = Employee.calculateWage(10);
         System.out.println(wage);
+        // Employee.setBaseSalary(60_000); now i can't use this 
+        //because it's private...
     }
 }
