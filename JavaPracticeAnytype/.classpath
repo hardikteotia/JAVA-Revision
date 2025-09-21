@@ -8,5 +8,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="srcOfArray"/>
 	<classpathentry kind="src" path="srcOfException"/>
+	<classpathentry kind="src" path="dsaJAVA"/>
+	<classpathentry kind="src" path="srcOfEnum"/>
+	<classpathentry kind="src" path="srcOfInheritance"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
