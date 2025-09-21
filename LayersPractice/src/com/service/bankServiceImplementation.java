@@ -1,6 +1,7 @@
 package com.service;
 import com.exception.*;
 import com.core.*;
+import com.validation.*;
 public class bankServiceImplementation implements bankService {
 	
 	//function to create saving account
@@ -20,7 +21,7 @@ public class bankServiceImplementation implements bankService {
 	}
 
 	@Override
-	public void withdraw(String accountNumber, double amount) {
+	public void withdraw(String email, double amount, Account[] referencedArray ) {
 		
 		
 	}
@@ -29,23 +30,36 @@ public class bankServiceImplementation implements bankService {
 		
 		
 	}
-	@Override
-	public void displayAccounts(Account [] referencedArray) {
+//	@Override
+//	public void displayAccounts(Account [] referencedArray) {
+//
+//		for(Account i : referencedArray) {
+//			if(i!=null) {
+//				System.out.println(i.toString());
+//			}
+//		}
+//		
+//	}
 
-		for(Account i : referencedArray) {
-			if(i!=null) {
-				System.out.println(i);
-			}
-		}
+	
+	
+	public void checkBalance(Account[] referencedArray, String emailForCheckingBalance) throws InvalidAccountException{
+//		Account balanceCheckingObject = new Account(emailForCheckingBalance);
+//		InputValidator emailChecker =  new InputValidator();
+		Account Acc = InputValidator.forBalanceCheck(emailForCheckingBalance, referencedArray);
+		
+		System.out.println("Your balance is: "+ Acc.getBalance() + " Name: "+Acc.getCustomerName());
+		
 		
 	}
 
-	
-	
-	public void checkBalance(Account[] referencedArray) {
-		Account balanceObj = null;
-		System.out.println("Your balance is: "+ balanceObj.getBalance() + " Name: "+balanceObj.getCustomerName());
-		
+	@Override
+	public void display(Account[] array) {
+		for(Account i: array) {
+			if(i!=null) {
+				i.display();
+			}
+		}
 		
 	}
 

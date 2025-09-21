@@ -4,7 +4,7 @@ public class Account {
 	
 	private String accountNumber;
 	private String customerName;
-	private double Balance;
+	private static double Balance;
 	private String email;
 	
 	
@@ -39,12 +39,12 @@ public class Account {
 	}
 
 
-	public double getBalance() {
+	public static double getBalance() {
 		return Balance;
 	}
 
 
-	public void setBalance(double balance) {
+	public static void setBalance(double balance) {
 		Balance = balance;
 	}
 
@@ -68,10 +68,12 @@ public class Account {
 	public void display() {}
 	
 	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof Account) {
-			this.email.equals(((Account) obj).getEmail());
-			return true;
+	public boolean equals(Object temporaryObjForEmailChecking) {
+		if(temporaryObjForEmailChecking instanceof Account) {
+			String emailSentByUser = ((Account) temporaryObjForEmailChecking).getEmail();
+			if(this.email.equals(emailSentByUser)) {
+				return true;
+			}
 		}
 		return false;
 	}
