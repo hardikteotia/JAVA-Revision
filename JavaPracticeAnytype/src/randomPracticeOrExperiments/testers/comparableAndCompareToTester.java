@@ -13,7 +13,7 @@ public class comparableAndCompareToTester {
 		
 		
 		
-		List<Integer> mylist2 = Arrays.asList(10,20)  ;
+		List<Integer> mylist2 = Arrays.asList(10,20) ;
 		
 		mylist.add(1111);
 		System.out.println("Enter the values");
