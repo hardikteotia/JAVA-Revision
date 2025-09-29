@@ -1,0 +1,33 @@
+LibraryManagementSystemUsingCollections
+├── src
+│   ├── com.libraryCore
+│   │   ├── Book.java
+│   │   ├── Member.java
+│   │   ├── RegularMember.java
+│   │   ├── PremiumMember.java
+│   ├── com.libraryCustomException
+│   │   ├── BookNotAvailableException.java
+│   │   ├── InvalidMemberException.java
+│   ├── com.libraryServices
+│   │   ├── LibraryServices.java
+│   │   ├── LibraryServicesImplementation.java
+│   ├── com.libraryUserInterface
+│   │   ├── LibraryTester.java
+│   ├── com.libraryValidation
+│   │   ├── ValidationUtil.java
+│   └── module-info.java
+
+
+
+
+
+
+
+
+
+
+User Interface (LibraryTester.java)
+
+Menu-driven application (CLI)
+
+Use Scanner for input
