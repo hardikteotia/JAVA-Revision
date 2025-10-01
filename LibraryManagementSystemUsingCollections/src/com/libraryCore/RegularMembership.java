@@ -10,7 +10,7 @@ public class RegularMembership extends Membership{
 
 	public void borrowedLimit() {
 		if(borrowedLimit > 0) {
-			//borrow the book
+			
 			
 			
 		}

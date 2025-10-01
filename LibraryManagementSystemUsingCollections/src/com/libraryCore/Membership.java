@@ -7,13 +7,14 @@
 
 package com.libraryCore;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Membership{
 	private int memberId;
 	private String name;
 	
-//	List<Book> borrowedBooks = new ArrayList<>();
+	List<Book> borrowedBooksbyMembers = new ArrayList<>();
 	
 	public Membership(int memberId, String name) {
 		this.memberId = memberId;

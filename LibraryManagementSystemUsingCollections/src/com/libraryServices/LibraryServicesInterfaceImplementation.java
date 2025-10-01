@@ -42,7 +42,9 @@ public class LibraryServicesInterfaceImplementation implements LibraryServicesIn
 	@Override
 	public void borrowBook(int bookId, int memberId) {
 		
-		
+		booksList.stream().filter(bid -> bid.getBookId() == bookId).forEach(s -> System.out.println(s.isAvailable()));
+		booksList.stream().filter(bid -> bid.getBookId() == bookId).findAny().ifPresent(s->s.setAvailable(false));
+		booksList.stream().filter(bid -> bid.getBookId() == bookId).forEach(s -> System.out.println(s));
 	}
 
 	@Override

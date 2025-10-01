@@ -83,7 +83,7 @@ public class LibraryTester {
 									break;
 									
 								case 3:
-									System.out.println("Enter Book Id");
+									System.out.println("Enter Book Id and member id");
 									serviceObj.borrowBook(sc.nextInt(),sc.nextInt());
 									break;
 									
