@@ -16,7 +16,7 @@ listBorrowedBooks(int memberId)
 
 package com.libraryServices;
 
-
+import com.libraryCustomException.BookNotAvailableException;
 
 public interface LibraryServicesInterface {
 	
@@ -25,7 +25,7 @@ public interface LibraryServicesInterface {
 	
 	public void registerMember(int memberId, String name);//completed
 	
-	public void borrowBook(int bookId, int memberId);
+	public void borrowBook(int bookId, int memberId) throws BookNotAvailableException;
 	
 	public void returnBook(int bookId, int memberId);
 	
