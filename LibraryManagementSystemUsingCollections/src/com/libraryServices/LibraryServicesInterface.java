@@ -17,6 +17,7 @@ listBorrowedBooks(int memberId)
 package com.libraryServices;
 
 import com.libraryCustomException.BookNotAvailableException;
+import com.libraryCustomException.InvalidMemberException;
 
 public interface LibraryServicesInterface {
 	
@@ -25,13 +26,19 @@ public interface LibraryServicesInterface {
 	
 	public void registerMember(int memberId, String name);//completed
 	
-	public void borrowBook(int bookId, int memberId) throws BookNotAvailableException;
+	public void borrowBook(int bookId, int memberId) throws BookNotAvailableException, InvalidMemberException;
 	
-	public void returnBook(int bookId, int memberId);
+	public void returnBook(int bookId);
 	
-	public void listAllBooks();//completed
+	public void listAllBooksUnsortedManner();//completed
+	
+	public void listAllBooksSortedManner();
 	
 	public void listAllMembers();//completed
 	
 	public void listBorrowedBooks(int memberId);
+	
+	public void searchBookById(int bookId) throws BookNotAvailableException;
+	
+	public void removeTheBook(int bookId) throws BookNotAvailableException;
 }

@@ -21,6 +21,7 @@ import java.util.List;
 import com.libraryCore.Book;
 import com.libraryCore.Membership;
 import com.libraryCustomException.BookNotAvailableException;
+import com.libraryCustomException.InvalidMemberException;
 
 public class LibraryServicesInterfaceImplementation implements LibraryServicesInterface{
 	
@@ -42,33 +43,43 @@ public class LibraryServicesInterfaceImplementation implements LibraryServicesIn
 	}//completed
 
 	@Override
-	public void borrowBook(int bookId, int memberId) throws BookNotAvailableException {
+	public void borrowBook(int bookId, int memberId) throws BookNotAvailableException, InvalidMemberException {
 		boolean availCheck = booksList.stream()
 			    			.anyMatch(book -> book.getBookId() == bookId && book.isAvailable());
+		boolean originalMember = membersList.stream()
+							.anyMatch(member->member.getMemberId() == memberId);
 		/*“Go through the list of books. If you find any book that has the same ID as the one
 		 * I'm looking for and it is available, then set availCheck to true.
 		 * Otherwise, set it to false.”*/
 		
 		if(availCheck) {
-		System.out.println("Before borrowing the book: ");
-		booksList.stream().filter(bid -> bid.getBookId() == bookId).forEach(s -> System.out.println(s.isAvailable()));
-		booksList.stream().filter(bid -> bid.getBookId() == bookId).findAny().ifPresent(s->s.setAvailable(false));
-		booksList.stream().filter(bid -> bid.getBookId() == bookId).forEach(s -> System.out.println(s));
-		System.out.println("After borrowing the book");
+			if(originalMember) {
+				System.out.println("Before borrowing the book: ");
+				booksList.stream().filter(bid -> bid.getBookId() == bookId).forEach(s -> System.out.println(s));
+				System.out.println("--------------");
+				booksList.stream().filter(bid -> bid.getBookId() == bookId).findAny().ifPresent(s->s.setAvailable(false));
+				System.out.println("--------------");
+				System.out.println("After borrowing the book");
+				booksList.stream().filter(bid -> bid.getBookId() == bookId).forEach(s -> System.out.println(s));
+			}
+			else {
+				throw new InvalidMemberException("Invalid Id");
+			}
 		}
 		else {
-			throw new BookNotAvailableException("Book not available");
+			throw new BookNotAvailableException("Book's not available");
 		}
 	}
 
 	@Override
-	public void returnBook(int bookId, int memberId) {
-		// TODO Auto-generated method stub
+	public void returnBook(int bookId) {
+		booksList.stream().filter(bid->bid.getBookId() == bookId).forEach(s->s.setAvailable(true));
+		System.out.println("Book returned");
 		
 	}
 
 	@Override
-	public void listAllBooks() {
+	public void listAllBooksUnsortedManner() {
 		booksList.forEach(b -> System.out.println(b));
 		
 		System.out.println("print sorted list--------");
@@ -91,7 +102,45 @@ public class LibraryServicesInterfaceImplementation implements LibraryServicesIn
 
 	@Override
 	public void listBorrowedBooks(int memberId) {
+		booksList.stream().filter(s->s.isAvailable()==false).forEach(s->System.out.println(s));
+		
+	}
+
+	@Override
+	public void searchBookById(int bookId) throws BookNotAvailableException {
+		boolean availCheck = booksList.stream()
+    			.anyMatch(book -> book.getBookId() == bookId && book.isAvailable());
+		if(availCheck) {
+			System.out.println("Your book is here-----");
+			booksList.stream().filter(s->s.getBookId()==bookId).forEach(s->System.out.println(s));
+		}
+		else {
+			throw new BookNotAvailableException("Not Presented!!!");
+		}
+		
+	}
+
+	@Override
+	public void removeTheBook(int bookId) throws BookNotAvailableException {
 		// TODO Auto-generated method stub
+		boolean availCheck =  booksList.stream()
+								.anyMatch(book->book.getBookId() == bookId && book.isAvailable());
+		if(availCheck) {
+			booksList.removeIf(bid->bid.getBookId()==bookId);
+			System.out.println("Book has been removed-----");
+		}
+		else {
+			throw new BookNotAvailableException("Not Presented!!!");
+		}
+		
+	}
+
+	@Override
+	public void listAllBooksSortedManner() {
+		System.out.println("print sorted list--------");
+		booksList.stream()
+	    .sorted(Comparator.comparing(book -> book.toString()))
+	    .forEach(System.out::println);
 		
 	}
 

@@ -50,7 +50,7 @@ public class LibraryTester {
 //		int choices;
 		try(Scanner sc = new Scanner(System.in)){
 			//outer try 
-			
+			while(!outerFlag) {
 				try {
 					//inner try
 					
@@ -63,9 +63,10 @@ public class LibraryTester {
 							+ "6. View all Members\r\n"
 							+ "7. Search book by Id\r\n"
 							+ "8. Remove Book by Id\r\n"
-							+ "9. Exit the application...\r\n");
+							+ "9. Exit the application...\r\n"
+							+ "10. Optional(List all the books in sorted Manner)\r\n");
 					
-					while(!outerFlag) {
+//					while(!outerFlag) {
 						//While starts here
 						
 							switch(sc.nextInt()) {
@@ -88,12 +89,13 @@ public class LibraryTester {
 									break;
 									
 								case 4:
-									
+									System.out.println("Return a Book: Enter the book id: ");
+									serviceObj.returnBook(sc.nextInt());
 									break;
 									
 								case 5:
 									System.out.println("----Books are----");
-									serviceObj.listAllBooks();
+									serviceObj.listAllBooksUnsortedManner();
 									break;
 									
 								case 6:
@@ -102,16 +104,23 @@ public class LibraryTester {
 									break;
 									
 								case 7:
-									
+									System.out.println("Search book by Id: Enter book Id");
+									serviceObj.searchBookById(sc.nextInt());
 									break;
 									
 								case 8:
-									
+									System.out.println("Remove Book: Enter book id");
+									serviceObj.removeTheBook(sc.nextInt());
 									break;
 								
 								case 9:
 									outerFlag = true;
 									System.out.println("ok byeeeee-----:D");
+									break;
+								
+								case 10:
+									System.out.println("Sorted are---------");
+									serviceObj.listAllBooksSortedManner();
 									break;
 									
 								default :
@@ -121,14 +130,15 @@ public class LibraryTester {
 							}
 						
 						//while ends here
-					}
+//					}
 					
 					//inner try ends here
 				}
+				
 				catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
-			
+			}
 			//outer try ends here
 		}
 		
