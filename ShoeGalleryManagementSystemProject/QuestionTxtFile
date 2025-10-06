@@ -1,0 +1,11 @@
+Q.1) Write Java application for Shoe Gallery Management System.
+
+
+
+
+All CRUD operations MUST happen in constant time performance. (Use any collection)
+
+1) Add required parsing / validation methods and custom exceptions
+
+
+
