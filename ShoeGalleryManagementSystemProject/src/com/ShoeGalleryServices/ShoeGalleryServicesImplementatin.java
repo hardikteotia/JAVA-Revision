@@ -1,9 +1,12 @@
 package com.ShoeGalleryServices;
-import com.CustomShoeException.*;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 //import java.util.Set;
 
+import com.CustomShoeException.InvalidRatingException;
+import com.CustomShoeException.InvalidShoeNameLengthException;
+import com.CustomShoeException.InvalidShoeTypeException;
 import com.ShoeCore.ShoeDetails;
 import com.ShoeCore.Shoe_Type;
 
@@ -30,9 +33,9 @@ public class ShoeGalleryServicesImplementatin implements ShoeGalleryServicesInte
 					var = Shoe_Type.valueOf(type);
 					if(var == Shoe_Type.CASUAL || var == Shoe_Type.FORMAL
 							|| var == Shoe_Type.SPORTS ) {
-						
+						ShoeDetails shoe = new ShoeDetails(name, brand, ratings, price, var);
 						ShoeGalleryMap.put(
-								ShoeDetails.getShoe_Id(), 
+								shoe.getShoe_Id(), 
 								new ShoeDetails(name, brand, ratings, price, Shoe_Type.valueOf(type)));
 					}
 					
@@ -66,31 +69,38 @@ public class ShoeGalleryServicesImplementatin implements ShoeGalleryServicesInte
 
 	@Override
 	public void DisplayAllShoesByIdSorted() {
-		
+		ShoeGalleryMap.values().stream()
+		.sorted(Comparator.comparing(ShoeDetails::getShoe_Id)).forEach(s->System.out.println(s));
 		
 	}
 
 	@Override
 	public void MostExpensiveShoe() {
-		// TODO Auto-generated method stub
+		ShoeDetails price  = ShoeGalleryMap.values()
+		.stream().max(Comparator.comparing(ShoeDetails::getPrice)).orElse(null);
+		System.out.println(price);
 		
 	}
 
 	@Override
-	public void RemoveShoeNotInGallery() {
-		// TODO Auto-generated method stub
+	public void RemoveShoeNotInGallery(int id) {
+		if(ShoeGalleryMap.containsKey(id)) {
+			ShoeGalleryMap.remove(id);
+		}
+		System.out.println("Deleted");
 		
 	}
 
 	@Override
-	public void UpdateShoePrice() {
-		// TODO Auto-generated method stub
+	public void UpdateShoePrice(double price) {
+		ShoeGalleryMap.values().stream().filter(s->s.getPrice()==price).findFirst().ifPresent(s->s.setPrice(price));
 		
 	}
 
 	@Override
 	public void ShoesAsPerPriceDescending() {
-		// TODO Auto-generated method stub
+		ShoeGalleryMap.values().stream().sorted(Comparator.comparing(ShoeDetails::getPrice).reversed())
+		.forEach(s->System.out.println(s));
 		
 	}
 

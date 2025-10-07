@@ -23,17 +23,17 @@ public interface ShoeGalleryServicesInterface {
 	
 	public void AddShoeInGallery(String name, String brand, int ratings, double price, 
 			 String type) throws InvalidShoeTypeException, InvalidShoeNameLengthException,
-								 InvalidRatingException;
+								 InvalidRatingException;//c
 	
-	public void DisplayAllShoes();
+	public void DisplayAllShoes();//c
 	
-	public void DisplayAllShoesByIdSorted();
+	public void DisplayAllShoesByIdSorted();//c
 	
-	public void MostExpensiveShoe();
+	public void MostExpensiveShoe();//c
 	
-	public void RemoveShoeNotInGallery();
+	public void RemoveShoeNotInGallery(int id);
 	
-	public void UpdateShoePrice();
+	public void UpdateShoePrice(double price);
 	
 	public void ShoesAsPerPriceDescending();
 	

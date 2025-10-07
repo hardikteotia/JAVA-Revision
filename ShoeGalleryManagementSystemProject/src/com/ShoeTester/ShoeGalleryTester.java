@@ -59,6 +59,27 @@ public class ShoeGalleryTester {
 								
 							case 3:
 								System.out.println("All Shoes in the Gallery by Id");
+								GalleryServiceObj.DisplayAllShoesByIdSorted();
+								break;
+								
+							case 4:
+								System.out.println("HERE IT is");
+								GalleryServiceObj.MostExpensiveShoe();
+								break;
+							
+							case 5:
+								System.out.println("Enter shoe id to delete");
+								GalleryServiceObj.RemoveShoeNotInGallery(sc.nextInt());
+								break;
+								
+							case 6:
+								System.out.println("Enter price: ");
+								GalleryServiceObj.UpdateShoePrice(sc.nextDouble());
+								break;
+							
+							case 7:
+								System.out.println("HERE________");
+								GalleryServiceObj.ShoesAsPerPriceDescending();
 								break;
 								
 							case 8:

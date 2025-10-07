@@ -35,7 +35,7 @@ public class ShoeDetails {
 	
 	
 	//To get shoe Id
-	public static int getShoe_Id() {
+	public int getShoe_Id() {
 		return NextShoe_Id;
 	}
 
